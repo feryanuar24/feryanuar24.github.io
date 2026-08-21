@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { portfolioData } from './data/portofolio.data';
+import { AsyncPipe } from '@angular/common';
+import { ProjectService } from './services/project.service';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AsyncPipe],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('github-portofolio');
+  data = portfolioData;
+
+  private projectService = inject(ProjectService);
+  projects$ = this.projectService.getProjects();
 }
