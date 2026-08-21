@@ -2,7 +2,7 @@ import { Service } from '@angular/core';
 import { Observable } from 'rxjs';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
-import { ProjectType } from '../types';
+import { ProjectType } from './app.type';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAlIhQyJs_NztxImACYH6p1pFohp-rHwwA',
@@ -13,7 +13,6 @@ const firebaseConfig = {
   appId: '1:938872717107:web:b6ddafbfab9d73af69c846',
   measurementId: 'G-V6B20828N0',
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
