@@ -2,13 +2,13 @@
   <header class="sticky top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
       <a routerLink="/" class="text-xl font-bold text-slate-800 tracking-tight"
-        >Portofolio<span class="text-blue-600">.</span></a
+        >Portfolio<span class="text-blue-600">.</span></a
       >
       <a
         routerLink="/projects"
         class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
       >
-        Kembali ke Proyek
+        Back to Projects
       </a>
     </div>
   </header>
@@ -16,7 +16,7 @@
   @if (project$ | async; as project) {
     <section class="pt-24 pb-10">
       <div class="max-w-5xl mx-auto px-6">
-        <p class="text-blue-600 font-medium mb-3">Detail Proyek</p>
+        <p class="text-blue-600 font-medium mb-3">Project Details</p>
         <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
           {{ project.title }}
         </h1>
@@ -36,7 +36,7 @@
 
         @if (project.images && project.images.length > 0) {
           <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-5">Galeri Proyek</h2>
+            <h2 class="text-xl font-bold text-slate-900 mb-5">Project Gallery</h2>
             <div class="grid sm:grid-cols-2 gap-5">
               @for (image of project.images; track image) {
                 <figure
@@ -53,13 +53,15 @@
   } @else {
     <section class="pt-32 pb-24">
       <div class="max-w-2xl mx-auto px-6 text-center">
-        <h1 class="text-2xl font-bold text-slate-900 mb-3">Proyek tidak ditemukan</h1>
-        <p class="text-slate-600 mb-8">ID proyek tidak tersedia atau data belum berhasil dimuat.</p>
+        <h1 class="text-2xl font-bold text-slate-900 mb-3">Project not found</h1>
+        <p class="text-slate-600 mb-8">
+          The project ID is not available or data has not been successfully loaded.
+        </p>
         <a
           routerLink="/projects"
           class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
         >
-          Kembali ke daftar proyek
+          Back to project list
         </a>
       </div>
     </section>

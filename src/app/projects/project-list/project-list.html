@@ -2,24 +2,24 @@
   <header class="sticky top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
       <a routerLink="/" class="text-xl font-bold text-slate-800 tracking-tight"
-        >Portofolio<span class="text-blue-600">.</span></a
+        >Portfolio<span class="text-blue-600">.</span></a
       >
       <a
         routerLink="/"
         class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
       >
-        Kembali ke Beranda
+        Back to Home
       </a>
     </div>
   </header>
 
   <section class="pt-24 pb-14">
     <div class="max-w-5xl mx-auto px-6">
-      <p class="text-blue-600 font-medium mb-3">Kumpulan Karya</p>
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">Proyek</h1>
+      <p class="text-blue-600 font-medium mb-3">Collection of Work</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">Projects</h1>
       <p class="text-slate-600 max-w-2xl leading-relaxed">
-        Daftar proyek yang pernah dikerjakan dengan fokus pada keterbacaan, struktur, dan hasil yang
-        dapat diukur.
+        A list of projects I have worked on, with a focus on readability, structure, and measurable
+        results.
       </p>
     </div>
   </section>
@@ -41,7 +41,7 @@
                 <div
                   class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md"
                 >
-                  {{ project.images.length }} gambar
+                  {{ project.images.length }} images
                 </div>
               }
             </div>
@@ -58,13 +58,13 @@
                 [routerLink]="['/projects', project.id]"
                 class="mt-auto inline-flex items-center justify-center w-full py-2.5 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg text-sm font-semibold transition-colors"
               >
-                Lihat Detail
+                View Details
               </a>
             </div>
           </article>
         } @empty {
           <div class="col-span-full text-center py-12 text-slate-500 animate-pulse">
-            Memuat data proyek dari database...
+            Loading project data from the database...
           </div>
         }
       </div>
