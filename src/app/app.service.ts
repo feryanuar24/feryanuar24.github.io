@@ -1,11 +1,30 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { collection, Firestore, onSnapshot } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  Firestore,
+  onSnapshot,
+  serverTimestamp,
+} from '@angular/fire/firestore';
 import { ProjectType } from './app.type';
+
+export interface MessagePayload {
+  email: string;
+  message: string;
+  name: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
   private db = inject(Firestore);
+
+  async sendMessage(payload: MessagePayload): Promise<void> {
+    await addDoc(collection(this.db, 'messages'), {
+      ...payload,
+      created_at: serverTimestamp(),
+    });
+  }
 
   getProjects(): Observable<ProjectType[]> {
     return new Observable<ProjectType[]>((observer) => {
