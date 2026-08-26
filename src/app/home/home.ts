@@ -1,17 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { ProjectService } from '../app.service';
+import { Component } from '@angular/core';
 import { portfolioData } from '../app.data';
-import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [AsyncPipe],
+  imports: [RouterLink],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
 export class Home {
   portfolioData = portfolioData;
-
-  private projectService = inject(ProjectService);
-  projects$ = this.projectService.getProjects();
 }

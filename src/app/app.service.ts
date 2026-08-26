@@ -1,26 +1,15 @@
-import { Service } from '@angular/core';
-import { Observable } from 'rxjs';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
+import { inject, Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { collection, Firestore, onSnapshot } from '@angular/fire/firestore';
 import { ProjectType } from './app.type';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyAlIhQyJs_NztxImACYH6p1pFohp-rHwwA',
-  authDomain: 'my-portofolio-63497.firebaseapp.com',
-  projectId: 'my-portofolio-63497',
-  storageBucket: 'my-portofolio-63497.firebasestorage.app',
-  messagingSenderId: '938872717107',
-  appId: '1:938872717107:web:b6ddafbfab9d73af69c846',
-  measurementId: 'G-V6B20828N0',
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-@Service()
+@Injectable({ providedIn: 'root' })
 export class ProjectService {
+  private db = inject(Firestore);
+
   getProjects(): Observable<ProjectType[]> {
     return new Observable<ProjectType[]>((observer) => {
-      const projectsRef = collection(db, 'projects');
+      const projectsRef = collection(this.db, 'projects');
 
       const unsubscribe = onSnapshot(
         projectsRef,
@@ -40,5 +29,11 @@ export class ProjectService {
 
       return () => unsubscribe();
     });
+  }
+
+  getProjectById(id: string): Observable<ProjectType | undefined> {
+    return this.getProjects().pipe(
+      map((projects) => projects.find((project) => project.id === id)),
+    );
   }
 }
